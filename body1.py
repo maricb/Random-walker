@@ -4,9 +4,16 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 from random import seed
+from random import random
 from random import randrange
 from matplotlib import pyplot
 seed(1)
-series =[randrange(10) for i in range(100)]
-pyplot.plot(series)
+random_walk = list()
+random_walk.append(-1 if random() <0.5 else 1)
+for i in range(1, 1000) :
+    movement = -1 if random() <0.5 else 1
+    value = random_walk[i-1] + movement
+    random_walk.append(value)
+print (random_walk)
+pyplot.plot(random_walk)
 pyplot.show()
