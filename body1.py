@@ -3,4 +3,10 @@
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-ARIANE
+from random import seed
+from random import randrange
+from matplotlib import pyplot
+seed(1)
+series =[randrange(10) for i in range(100)]
+pyplot.plot(series)
+pyplot.show()
