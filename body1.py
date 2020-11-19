@@ -16,38 +16,27 @@ x=[0]
 N = int(input("number of steps : "))
 murdroite = 5
 murgauche = -5
-steps_reflecting = 0
+
 #np.random.normal prend une valeur dans une fonction normale centree (je crois hein pas sure du tout les cours de terminale remonte a looooooiiiiin)
 #du coup elle permet de choisir une valeur probable pour la prochaine abscisse du pas
 
-def reflect(xn,murdroite,murgauche, steps_reflecting):
+def reflect(xn,murdroite,murgauche):
     if xn > murdroite :
-        steps_reflecting = murdroite - xn
-        xn=murdroite - steps_reflecting
+
+        xn=murdroite - abs(murdroite - xn)
 
     if xn < murgauche :
-        steps_reflecting = murgauche + xn
-        xn = distanceN - steps_reflecting
+        xn = murgauche +abs(murgauche - xn)
+
     return(xn)
 
 
 for i in range(N):
     dx=np.random.normal()
     xn = x[-1]+dx
-    xn=reflect(xn,murdroite,murgauche, steps_reflecting)
+    xn= reflect(xn,murdroite,murgauche)
     x.append(xn)
     #les murs
-    if xn <-5 :
-        xn+=1
-    if xn >5:
-        xn-=1
-
-
-
-
-
-
-
 
 
 #vision horizontale
