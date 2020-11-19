@@ -26,12 +26,28 @@ pyplot.show()
 #creation de la liste qui contient les positions du deplacement
 x=[0]
 #nombre de pas fait par la personne alcoolisee
-N = int(input(“number of steps : “))
-
+N = int(input("number of steps : "))
+distanceP = 5
+distanceN = -5
+steps_reflecting = [ ]
 #np.random.normal prend une valeur dans une fonction normale centree (je crois hein pas sure du tout les cours de terminale remonte a looooooiiiiin)
 #du coup elle permet de choisir une valeur probable pour la prochaine abscisse du pas
+
+def reflect(xn,distanceP,distanceN, steps_reflecting):
+    if xn > distanceP :
+        steps_reflecting = distanceP - xn
+        xn=distanceP - steps_reflecting
+
+    if xn < distanceN :
+        steps_reflecting = distanceN + xn
+        xn = distanceN - steps_reflecting
+    return(xn)
+
+
 for i in range(N):
-    xn = x[-1]+np.random.normal()
+    dx=np.random.normal()
+    xn = x[-1]+dx
+    xn=reflect(xn,distanceP,distanceN, steps_reflecting)
     x.append(xn)
     #les murs
     if xn <-5 :
@@ -41,20 +57,10 @@ for i in range(N):
 
 
 
-steps_reflecting = [ ]
-total_steps = [ ]
-distanceP = 5
-distanceN = -5
 
-def reflect():
-    If walker_steps > distanceP :
-        steps_reflecting = distanceP - walker_steps
-        total_steps = distanceP - steps_reflecting
 
-    If walker_steps < distanceN :
-        steps_reflecting = distanceN + walker_steps
-        total_steps = distanceN - steps_reflecting
-break
+
+
 
 
 #vision horizontale
