@@ -31,7 +31,12 @@ N=50
 #np.random.normal prend une valeur dans une fonction normale centree (je crois hein pas sure du tout les cours de terminale remonte a looooooiiiiin)
 #du coup elle permet de choisir une valeur probable pour la prochaine abscisse du pas
 for i in range(N):
-    x.append(x[-1]+np.random.normal())
+    xn = x[-1]+np.random.normal()
+    x.append(xn)
+    if xn <-5 :
+        xn+=1
+    if xn >5:
+        xn-=1
 
 #vision horizontale
 plt.subplot(211)
