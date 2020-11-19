@@ -36,17 +36,19 @@ def absorbing(xn, murdroite, murgauche):
     if xn<murgauche :
         xn=murgauche
         xmaxlife = 0
+    return(xn)
 
 
 for i in range(N):
-    dx=np.random.normal()
-    xn = x[-1]+ dx
-    p=np.random.random()
-    if 0.5 < p :
-        reflect(xn, murdroite, murgauche)
-    if 0.5 > p :
-        absorbing(xn, murdroite, murgauche)
-    x.append(xn)
+        dx=np.random.normal()
+        xn = x[-1]+ dx
+        p=np.random.random()
+        if 0.5 < p :
+            xn=reflect(xn, murdroite, murgauche)
+        print (xn)
+        if 0.5 > p :
+            xn = absorbing(xn, murdroite, murgauche)
+        x.append(xn)
 
 
 #vision horizontale
