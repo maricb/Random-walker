@@ -40,11 +40,13 @@ def absorbing(xn, murdroite, murgauche):
 
 for i in range(N):
     dx=np.random.normal()
-    xn = x[-1]+dx
+    xn = x[-1]+ dx
     p=np.random.random()
-    xn= reflect(xn,murdroite,murgauche)
+    if 0.5 < p :
+        reflect(xn, murdroite, murgauche)
+    if 0.5 > p :
+        absorbing(xn, murdroite, murgauche)
     x.append(xn)
-
 
 
 #vision horizontale
