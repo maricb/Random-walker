@@ -26,22 +26,41 @@ pyplot.show()
 #creation de la liste qui contient les positions du deplacement
 x=[0]
 #nombre de pas fait par la personne alcoolisee
-N=50
+N = int(input(“number of steps : “))
 
 #np.random.normal prend une valeur dans une fonction normale centree (je crois hein pas sure du tout les cours de terminale remonte a looooooiiiiin)
 #du coup elle permet de choisir une valeur probable pour la prochaine abscisse du pas
 for i in range(N):
     xn = x[-1]+np.random.normal()
     x.append(xn)
+    #les murs
     if xn <-5 :
         xn+=1
     if xn >5:
         xn-=1
 
+
+
+steps_reflecting = [ ]
+total_steps = [ ]
+distanceP = 5
+distanceN = -5
+
+def reflect():
+    If walker_steps > distanceP :
+        steps_reflecting = distanceP - walker_steps
+        total_steps = distanceP - steps_reflecting
+
+    If walker_steps < distanceN :
+        steps_reflecting = distanceN + walker_steps
+        total_steps = distanceN - steps_reflecting
+break
+
+
 #vision horizontale
 plt.subplot(211)
 for i in range(N):
-    plt.plot(x[i],3,'o-b')
+    plt.plot(x[i],3,'ob')
 plt.title("déplacement du bonhomme")
 
 
