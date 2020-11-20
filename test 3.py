@@ -59,9 +59,7 @@ for i in range(11) :
     for i in range(N):
                 dx=np.random.normal()
                 xn = x[-1]+ dx
-                p=np.random.random()
-                
-            if xn > murdroite : 
+                p=np.random.random() 
                 if 0.5 < p :
                     xn=reflect(xn, murdroite, murgauche)
                 print (xn)
@@ -71,6 +69,7 @@ for i in range(11) :
                 print(xmaxlife)
                 if xmaxlife==0:
                     break
+   
    
 
     #vision horizontale
