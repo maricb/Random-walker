@@ -17,33 +17,32 @@ murdroite = 5
 murgauche = -5
 xmaxlife = 1
 p=(len(x)//2*N)
-
+ensemblebonhomme = {}
 #np.random.normal prend une valeur dans une fonction normale centree (je crois hein pas sure du tout les cours de terminale remonte a looooooiiiiin)
 #du coup elle permet de choisir une valeur probable pour la prochaine abscisse du pas
 
-plt.subplot(211)
-
-for i in range(11) : 
 
 
-    def reflect(xn,murdroite,murgauche):
-        if xn > murdroite :
-            xn=murdroite - abs(murdroite - xn)
-        if xn < murgauche :
-            xn = murgauche + abs(murgauche - xn)
-        return(xn)
 
 
-    def absorbing(xn, murdroite, murgauche,xmaxlife):
-        if xn>murdroite :
-            xn=murdroite
-            xmaxlife = 0
-            print("xmaxlife = 0")
-        if xn<murgauche :
-            xn=murgauche
-            xmaxlife = 0
-            print("xmaxlife = 0")
-        return(xn,xmaxlife)
+def reflect(xn,murdroite,murgauche):
+    if xn > murdroite :
+        xn=murdroite - abs(murdroite - xn)
+    if xn < murgauche :
+        xn = murgauche + abs(murgauche - xn)
+    return(xn)
+
+
+def absorbing(xn, murdroite, murgauche,xmaxlife):
+    if xn>murdroite :
+        xn=murdroite
+        xmaxlife = 0
+        print("xmaxlife = 0")
+    if xn<murgauche :
+        xn=murgauche
+        xmaxlife = 0
+        print("xmaxlife = 0")
+    return(xn,xmaxlife)
 
         #for i in range(N):
 
@@ -53,22 +52,27 @@ for i in range(11) :
         #        print (xn)
         #        xn=absorbing(xn, murdroite, murgauche)
         #        x.append(xn)
-        print (x)
+    print (x)
+        
+plt.subplot(211)
 
-
-    for i in range(N):
-                dx=np.random.normal()
-                xn = x[-1]+ dx
-                p=np.random.random() 
-                if 0.5 < p :
-                    xn=reflect(xn, murdroite, murgauche)
-                print (xn)
-                if 0.5 > p :
-                    xn,xmaxlife = absorbing(xn, murdroite, murgauche,xmaxlife)
-                x.append(xn)
-                print(xmaxlife)
-                if xmaxlife==0:
-                    break
+for i in range(11) :
+    x = [0]
+    for z in range(N):
+        dx=np.random.normal()
+        xn = x[-1]+ dx
+        p=np.random.random() 
+        if 0.5 < p :
+            xn=reflect(xn, murdroite, murgauche)
+        print (xn)
+        if 0.5 > p :
+            xn,xmaxlife = absorbing(xn, murdroite, murgauche,xmaxlife)
+        x.append(xn)
+        print(xmaxlife)
+        #if xmaxlife==0:
+            #break      
+    ensemblebonhomme[i] = x
+           
    
    
 
@@ -82,11 +86,11 @@ for i in range(11) :
     #plt.title("déplacement du bonhomme")
 
     
-    for j in range(11) : 
-        for t in range(len(x)):
-            for n in range(11):
-            plt.plot(x[t],j,'ob')
-            plt.title("déplacement du bonhomme")
+for numérobonhomme in range(11) :
+    x = ensemblebonhomme.get(numérobonhomme)
+    for pas in range(len(x)):
+        plt.plot(x[pas],numérobonhomme,'ob')
+        plt.title("déplacement du bonhomme")
 
 
 
