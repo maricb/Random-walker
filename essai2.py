@@ -45,7 +45,6 @@ def absorbing(xn, murdroite, murgauche,xmaxlife):
     return(xn,xmaxlife)
 
 #for i in range(N):
-
 #    while xmaxlife !=0 :
 #        dx=np.random.normal()
 #        xn = x[-1]+ dx
@@ -59,6 +58,7 @@ for i in range(N):
             dx=np.random.normal()
             xn = x[-1]+ dx
             p=np.random.random()
+
             if 0.5 < p :
                 xn=reflect(xn, murdroite, murgauche)
             print (xn)
@@ -83,4 +83,3 @@ plt.title("distance parcourue a chaque pas")
 plt.xlabel("nombre de pas effectué")
 plt.ylabel("coordonnée du pas")
 plt.show()
-#>>>>>>> 52cfbbd8a21549b075332ba65b11eeb6d036c273

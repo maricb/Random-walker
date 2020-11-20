@@ -52,44 +52,36 @@ def absorbing(xn, murdroite, murgauche,xmaxlife):
         #        print (xn)
         #        xn=absorbing(xn, murdroite, murgauche)
         #        x.append(xn)
-    print (x)
-        
+
 plt.subplot(211)
 
 for i in range(11) :
     x = [0]
+    xmaxlife=1
     for z in range(N):
         dx=np.random.normal()
         xn = x[-1]+ dx
-        p=np.random.random() 
+        p=np.random.random()
         if 0.5 < p :
             xn=reflect(xn, murdroite, murgauche)
         print (xn)
         if 0.5 > p :
             xn,xmaxlife = absorbing(xn, murdroite, murgauche,xmaxlife)
-        x.append(xn)
-        print(xmaxlife)
-        #if xmaxlife==0:
-            #break      
+        if xmaxlife!=0:
+            x.append(xn)
+
     ensemblebonhomme[i] = x
-           
-   
-   
 
-    #vision horizontale
-    #for j in range(11) : 
-        #for t in range(len(x)):
-            #for n in range(11):
-                #plt.plot(x[t],j,'ob')
-    #plt.plot(x[t]+1,j,'ob')
-                
-    #plt.title("déplacement du bonhomme")
 
-    
-for numérobonhomme in range(11) :
-    x = ensemblebonhomme.get(numérobonhomme)
+
+
+for numerobonhomme in range(11) :
+    x = ensemblebonhomme.get(numerobonhomme)
     for pas in range(len(x)):
-        plt.plot(x[pas],numérobonhomme,'ob')
+        if numerobonhomme%2==0:
+            plt.plot(x[pas],numerobonhomme,'ob')
+        else:
+            plt.plot(x[pas],numerobonhomme,'or')
         plt.title("déplacement du bonhomme")
 
 
