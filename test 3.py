@@ -7,6 +7,7 @@ from random import random
 from random import randrange
 from matplotlib import pyplot
 seed(1)
+
 #<<<<<<< HEAD
 
 #creation de la liste qui contient les positions du deplacement
@@ -18,6 +19,8 @@ murgauche = -5
 xmaxlife = 1
 p=(len(x)/2*N)
 ensemblebonhomme = {}
+ensemblebonhommetest =np.zeros([11,N])
+
 #np.random.normal prend une valeur dans une fonction normale centree (je crois hein pas sure du tout les cours de terminale remonte a looooooiiiiin)
 #du coup elle permet de choisir une valeur probable pour la prochaine abscisse du pas
 
@@ -54,6 +57,17 @@ def absorbing(xn, murdroite, murgauche,xmaxlife):
         #        x.append(xn)
 
 plt.subplot(211)
+def reflectabsord(N,x,xmaxlife):
+    for z in range(N):
+        dx=np.random.normal()
+        xn = x[-1]+ dx
+        p=np.random.random()
+        if 0.5 < p :
+            xn=reflect(xn, murdroite, murgauche)
+        if 0.5 > p :
+            xn,xmaxlife = absorbing(xn, murdroite, murgauche,xmaxlife)
+        if xmaxlife!=0:
+            x.append(xn)
 
 for i in range(11) :
     x = [0]
@@ -61,23 +75,22 @@ for i in range(11) :
     for z in range(N):
         dx=np.random.normal()
         xn = x[-1]+ dx
-        p=np.random.random()
-        if 0.5 < p :
-            xn=reflect(xn, murdroite, murgauche)
-        print (xn)
-        if 0.5 > p :
-            xn,xmaxlife = absorbing(xn, murdroite, murgauche,xmaxlife)
+        xn=absorbing(xn, murdroite, murgauche,xmaxlife)
         if xmaxlife!=0:
             x.append(xn)
 
     ensemblebonhomme[i] = x
+
 #dictionnaire
 
-
-somme = 0
+sommecoordtot=0
+sommelongliste = 0
 for numerobonhomme in range(11) :
     x = ensemblebonhomme.get(numerobonhomme)
-    somme +=len(x)
+    print(x)
+    sommelongliste +=len(x)
+    sommecoordtot+=sum(x)
+    print(sommecoordtot)
 #get = récup valeur associée à la clé 1
     for pas in range(len(x)):
         if numerobonhomme%2==0:
@@ -85,7 +98,7 @@ for numerobonhomme in range(11) :
         else:
             plt.plot(x[pas],numerobonhomme,'or')
         plt.title("déplacement du bonhomme")
-average = somme/11
+average = sommelongliste/11
 print (average)
 
 
