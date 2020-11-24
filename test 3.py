@@ -16,7 +16,7 @@ N = int(input("number of steps : "))
 murdroite = 5
 murgauche = -5
 xmaxlife = 1
-p=(len(x)//2*N)
+p=(len(x)/2*N)
 ensemblebonhomme = {}
 #np.random.normal prend une valeur dans une fonction normale centree (je crois hein pas sure du tout les cours de terminale remonte a looooooiiiiin)
 #du coup elle permet de choisir une valeur probable pour la prochaine abscisse du pas
@@ -71,19 +71,22 @@ for i in range(11) :
             x.append(xn)
 
     ensemblebonhomme[i] = x
+#dictionnaire
 
 
-
-
+somme = 0
 for numerobonhomme in range(11) :
     x = ensemblebonhomme.get(numerobonhomme)
+    somme +=len(x)
+#get = récup valeur associée à la clé 1
     for pas in range(len(x)):
         if numerobonhomme%2==0:
             plt.plot(x[pas],numerobonhomme,'ob')
         else:
             plt.plot(x[pas],numerobonhomme,'or')
         plt.title("déplacement du bonhomme")
-
+average = somme/11
+print (average)
 
 
 #vision en fonction des pas
