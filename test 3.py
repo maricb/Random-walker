@@ -24,9 +24,6 @@ stock =np.zeros((nbonhomme,N+1))
 #np.random.normal prend une valeur dans une fonction normale centree (je crois hein pas sure du tout les cours de terminale remonte a looooooiiiiin)
 #du coup elle permet de choisir une valeur probable pour la prochaine abscisse du pas
 
-
-
-
 # creation de la fonction qui repousse quand on rencontre un mur
 def reflect(xn,murdroite,murgauche):
     if xn > murdroite :
@@ -84,9 +81,16 @@ for i in range(nbonhomme) :
     stock[i,:] = x
 
 plt.subplot(211)
+
+dureedevietot=0
 for numerobonhomme in range(nbonhomme) :
-    x = stock[numerobonhomme]
+    x=stock[numerobonhomme]
+    #creation d'une liste vide ou on va rentrer les pas qu'il a fait en etant vivant
+    bonvivant=[]
     for pas in range(len(x)):
+        if x[pas]!=murdroite and x[pas]!=murgauche:
+            bonvivant.append(x[pas])
+
         if numerobonhomme%2==0:
             plt.plot(x[pas],numerobonhomme,'ob')
         else:
@@ -94,9 +98,15 @@ for numerobonhomme in range(nbonhomme) :
         plt.title("déplacement du bonhomme")
 
 
+    dureedevietot +=len(bonvivant)
+
+moydureedevie=(dureedevietot/N)
+print(moydureedevie)
+
+
 plt.show
 
-#Des histoires de moyenne de pas
+#question 1
 som=0
 moycoordpas=[]
 plt.subplot(212)
